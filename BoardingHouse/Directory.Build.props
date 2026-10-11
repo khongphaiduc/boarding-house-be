@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <EfCoreVersion>8.0.31</EfCoreVersion>
+  </PropertyGroup>
+</Project>

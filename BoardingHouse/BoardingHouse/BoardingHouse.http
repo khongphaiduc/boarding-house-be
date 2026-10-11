@@ -1,0 +1,16 @@
+@baseUrl = http://localhost:5154
+
+GET {{baseUrl}}/health
+Accept: text/plain
+
+### List rooms (pageSize: 1-100)
+GET {{baseUrl}}/api/rooms?pageNumber=1&pageSize=20
+Accept: application/json
+
+### Read a room (replace the ID with one from the list)
+GET {{baseUrl}}/api/rooms/11111111-1111-1111-1111-111111111111
+Accept: application/json
+
+### Invalid pagination: 400 ProblemDetails, no SQL query
+GET {{baseUrl}}/api/rooms?pageNumber=0&pageSize=20
+Accept: application/json

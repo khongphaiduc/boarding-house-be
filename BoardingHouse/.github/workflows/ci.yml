@@ -1,0 +1,26 @@
+name: Build and test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore
+        run: dotnet restore BoardingHouse.sln
+      - name: Build
+        run: dotnet build BoardingHouse.sln --configuration Release --no-restore
+      - name: Test
+        run: dotnet test BoardingHouse.sln --configuration Release --no-build --no-restore
