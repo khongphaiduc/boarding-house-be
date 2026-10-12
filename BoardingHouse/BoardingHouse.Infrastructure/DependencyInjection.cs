@@ -11,11 +11,8 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString("DefaultConnection");
-        if (string.IsNullOrWhiteSpace(connectionString))
-        {
-            throw new InvalidOperationException("Configure ConnectionStrings:DefaultConnection using ConnectionStrings__DefaultConnection in .env or environment variables before starting the API.");
-        }
+        var connectionString = configuration["SQL"];
+   
 
         services.AddDbContext<BoardingHouseDbContext>(options => options.UseSqlServer(
             connectionString, sql => sql.EnableRetryOnFailure(3)));
