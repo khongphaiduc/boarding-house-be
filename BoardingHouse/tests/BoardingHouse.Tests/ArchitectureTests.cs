@@ -42,11 +42,11 @@ public sealed class ArchitectureTests
         Assert.IsType<RoomService>(scope.ServiceProvider.GetRequiredService<IRoomService>());
         Assert.NotNull(scope.ServiceProvider.GetRequiredService<IRoomRepository>());
         Assert.Same(context, scope.ServiceProvider.GetRequiredService<IUnitOfWork>());
-        Assert.Equal(16, context.Model.GetEntityTypes().Count());
+        Assert.Equal(17, context.Model.GetEntityTypes().Count());
         var domainTypes = typeof(RoomEntity).Assembly.GetExportedTypes()
             .Where(type => type.Namespace == "BoardingHouse.Domain.Entities")
             .ToDictionary(type => type.Name);
-        Assert.Equal(16, domainTypes.Count);
+        Assert.Equal(17, domainTypes.Count);
         Assert.All(domainTypes.Values, type => Assert.EndsWith("Entity", type.Name));
         Assert.All(context.Model.GetEntityTypes(), model =>
         {
